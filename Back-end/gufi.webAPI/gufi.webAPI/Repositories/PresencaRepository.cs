@@ -1,5 +1,7 @@
-﻿using gufi.webAPI.Domains;
+﻿using gufi.webAPI.Contexts;
+using gufi.webAPI.Domains;
 using gufi.webAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +11,47 @@ namespace gufi.webAPI.Repositories
 {
     public class PresencaRepository : IPresencaRepository
     {
+        GufiContext ctx = new GufiContext();
         public void Atualizar(int id, Presenca novaPresenca)
         {
-            throw new NotImplementedException();
+            Presenca presencaBuscada = BuscarPorId(id);
+
+            if (presencaBuscada != null)
+            {
+                presencaBuscada.IdEvento = novaPresenca.IdEvento;
+                presencaBuscada.IdSituacao = novaPresenca.IdSituacao;
+                presencaBuscada.IdUsuario = novaPresenca.IdUsuario;
+            }
+
+            ctx.Presencas.Update(presencaBuscada);
+            ctx.SaveChanges();
         }
 
         public Presenca BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return ctx.Presencas.FirstOrDefault(p => p.IdPresenca == id);
         }
 
         public void Cadastrar(Presenca presenca)
         {
-            throw new NotImplementedException();
+            ctx.Presencas.Add(presenca);
+            ctx.SaveChanges();
         }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            Presenca presencaBuscada = BuscarPorId(id);
+
+            if(presencaBuscada != null)
+            {
+                ctx.Presencas.Remove(presencaBuscada);
+                ctx.SaveChanges();
+            }
         }
 
         public List<Presenca> ListarTodos()
         {
-            throw new NotImplementedException();
+            return ctx.Presencas.Include(x => x.IdEventoNavigation).Include(y => y.IdSituacaoNavigation).Include(z => z.IdUsuarioNavigation).ToList();
         }
     }
 }

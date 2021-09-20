@@ -1,6 +1,7 @@
 ﻿using gufi.webAPI.Contexts;
 using gufi.webAPI.Domains;
 using gufi.webAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,27 +15,45 @@ namespace gufi.webAPI.Repositories
 
         public void Atualizar(int id, Usuario novoUsuario)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = BuscarPorId(id);
+
+            if (usuarioBuscado != null)
+            {
+                usuarioBuscado.IdTipoUsuario = novoUsuario.IdTipoUsuario;
+                usuarioBuscado.NomeUsuario = novoUsuario.NomeUsuario;
+                usuarioBuscado.Senha = novoUsuario.Senha;
+                usuarioBuscado.Email = novoUsuario.Email;
+            }
+
+            ctx.Usuarios.Update(usuarioBuscado);
+            ctx.SaveChanges();
         }
 
         public Usuario BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
         }
 
         public void Cadastrar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            ctx.Usuarios.Add(usuario);
+            ctx.SaveChanges();
         }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = BuscarPorId(id);
+
+            if (usuarioBuscado != null)
+            {
+                ctx.Usuarios.Remove(usuarioBuscado);
+                ctx.SaveChanges();
+            }
         }
 
         public List<Usuario> ListarTodos()
         {
-            throw new NotImplementedException();
+            return ctx.Usuarios.Include(x => x.IdTipoUsuarioNavigation).Include(y => y.Presencas).ToList();
         }
 
         public Usuario Login(string email, string senha)

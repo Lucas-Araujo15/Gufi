@@ -1,5 +1,7 @@
-﻿using gufi.webAPI.Domains;
+﻿using gufi.webAPI.Contexts;
+using gufi.webAPI.Domains;
 using gufi.webAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +11,45 @@ namespace gufi.webAPI.Repositories
 {
     public class TipoEventoRepository : ITipoEventoRepository
     {
+        GufiContext ctx = new GufiContext();
         public void Atualizar(int id, TipoEvento novoTipoEvento)
         {
-            throw new NotImplementedException();
+            TipoEvento tipoEventoBuscado = BuscarPorId(id);
+
+            if (tipoEventoBuscado != null)
+            {
+                tipoEventoBuscado.TituloTipoEvento = novoTipoEvento.TituloTipoEvento;
+            }
+
+            ctx.TipoEventos.Update(tipoEventoBuscado);
+            ctx.SaveChanges();
         }
 
         public TipoEvento BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return ctx.TipoEventos.FirstOrDefault(t => t.IdTipoEvento == id);
         }
 
         public void Cadastrar(TipoEvento tipoEvento)
         {
-            throw new NotImplementedException();
+            ctx.TipoEventos.Add(tipoEvento);
+            ctx.SaveChanges();
         }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            TipoEvento tipoEventoBuscado = BuscarPorId(id);
+
+            if (tipoEventoBuscado != null)
+            {
+                ctx.TipoEventos.Remove(tipoEventoBuscado);
+                ctx.SaveChanges();
+            }
         }
 
         public List<TipoEvento> ListarTodos()
         {
-            throw new NotImplementedException();
+            return ctx.TipoEventos.Include(x => x.Eventos).ToList();
         }
     }
 }
