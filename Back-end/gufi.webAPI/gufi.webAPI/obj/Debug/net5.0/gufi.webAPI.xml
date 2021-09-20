@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>gufi.webAPI</name>
+    </assembly>
+    <members>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.Login(System.String,System.String)">
+            <summary>
+            Busca um usuário específico
+            </summary>
+            <param name="email">Email do usuário</param>
+            <param name="senha">Senha do usuário</param>
+            <returns>Objeto Usuario correspondente as credenciais informadas</returns>
+        </member>
+    </members>
+</doc>
