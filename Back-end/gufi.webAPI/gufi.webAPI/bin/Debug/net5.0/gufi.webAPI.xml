@@ -4,6 +4,218 @@
         <name>gufi.webAPI</name>
     </assembly>
     <members>
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.Cadastar(gufi.webAPI.Domains.Evento)">
+            <summary>
+            Cadastra um novo evento
+            </summary>
+            <param name="evento">Objeto Evento a ser cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.ListarTodos">
+            <summary>
+            Lista todos os eventos cadastrados
+            </summary>
+            <returns>Uma lista de eventos</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna um evento em específico
+            </summary>
+            <param name="id">ID do evento</param>
+            <returns>Evento que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.Atualizar(System.Int32,gufi.webAPI.Domains.Evento)">
+            <summary>
+            Atualiza um evento específico
+            </summary>
+            <param name="id">ID do evento a ser atualizado</param>
+            <param name="novoEvento">Objeto Evento com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um evento específico
+            </summary>
+            <param name="id">ID do evento a ser deletado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IInstituicaoRepository.Cadastrar(gufi.webAPI.Domains.Instituicao)">
+            <summary>
+            Cadastra uma nova instituição
+            </summary>
+            <param name="instituicao">Objeto Instituicao a ser cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IInstituicaoRepository.ListarTodos">
+            <summary>
+            Lista todas as instituições cadastradas
+            </summary>
+            <returns>Uma lista de instituições</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IInstituicaoRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna uma instituição específica
+            </summary>
+            <param name="id">ID da instituição</param>
+            <returns>Objeto Instituicao que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IInstituicaoRepository.Atualizar(System.Int32,gufi.webAPI.Domains.Instituicao)">
+            <summary>
+            Atualiza uma instituição específica
+            </summary>
+            <param name="id">ID da instituição</param>
+            <param name="novaInstituicao">Objeto Instituicao com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IInstituicaoRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta uma instituição específica
+            </summary>
+            <param name="id">ID da instituição a ser deletada</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.Cadastrar(gufi.webAPI.Domains.Presenca)">
+            <summary>
+            Cadastra uma nova presença
+            </summary>
+            <param name="presenca"></param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.ListarTodos">
+            <summary>
+            Lista todas as presenças cadastradas
+            </summary>
+            <returns>Uma lista de presenças</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna uma presença específica
+            </summary>
+            <param name="id">ID da presença</param>
+            <returns>Objeto Presenca que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.Atualizar(System.Int32,gufi.webAPI.Domains.Presenca)">
+            <summary>
+            Atualiza uma presença específica
+            </summary>
+            <param name="id">ID da presença</param>
+            <param name="novaPresenca">Objeto Presenca com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta uma presença específica
+            </summary>
+            <param name="id">ID da presença a ser deletada</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.ListarMinhas(System.Int32)">
+            <summary>
+            Lista todas as presença de um usuário específico
+            </summary>
+            <param name="id">ID do usuário</param>
+            <returns>Uma lista de presenças</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.AprovarRecusar(System.Int32,System.String)">
+            <summary>
+            Altera o status de uma presença
+            </summary>
+            <param name="idPresenca">ID da presença que será alterada</param>
+            <param name="status">Novo status para a presença</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IPresencaRepository.Inscrever(gufi.webAPI.Domains.Presenca)">
+            <summary>
+            Inscreve um novo usuário
+            </summary>
+            <param name="inscricao">Objeto Presenca que estará inscrito</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ISituacaoRepository.Cadastrar(gufi.webAPI.Domains.Situacao)">
+            <summary>
+            Cadastra uma nova situação
+            </summary>
+            <param name="situacao">Objeto Situacao que será cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ISituacaoRepository.ListarTodos">
+            <summary>
+            Lista todas as situações cadastradas
+            </summary>
+            <returns>Uma lista de situações possíveis</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ISituacaoRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna uma situação específica
+            </summary>
+            <param name="id">ID da situação</param>
+            <returns>Objeto Situacao que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ISituacaoRepository.Atualizar(System.Int32,gufi.webAPI.Domains.Situacao)">
+            <summary>
+            Atualiza um situação específica
+            </summary>
+            <param name="id">ID da situação</param>
+            <param name="novaSituacao">Objeto Situacao com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ISituacaoRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta uma situação específica
+            </summary>
+            <param name="id">ID da situação a ser deletada</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoEventoRepository.Cadastrar(gufi.webAPI.Domains.TipoEvento)">
+            <summary>
+            Cadastra um novo tipo de evento
+            </summary>
+            <param name="tipoEvento">Objeto TipoEvento a ser cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoEventoRepository.ListarTodos">
+            <summary>
+            Lista todos os tipos de evento cadastrados
+            </summary>
+            <returns>Retorna uma lista de tipos de evento</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoEventoRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna um tipo de evento específico
+            </summary>
+            <param name="id">ID do tipo de evento</param>
+            <returns>Objeto TipoEvento que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoEventoRepository.Atualizar(System.Int32,gufi.webAPI.Domains.TipoEvento)">
+            <summary>
+            Atualiza um tipo de evento específico
+            </summary>
+            <param name="id">ID do tipo de evento</param>
+            <param name="novoTipoEvento">Objeto TipoEvento com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoEventoRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um tipo de evento específico
+            </summary>
+            <param name="id">ID do tipo de evento a ser deletado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoUsuarioRepository.Cadastrar(gufi.webAPI.Domains.TipoUsuario)">
+            <summary>
+            Cadastra um novo tipo de usuário
+            </summary>
+            <param name="tipoUsuario">Objeto TipoUsuario a ser cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoUsuarioRepository.ListarTodos">
+            <summary>
+            Lista todos os tipos de usuário cadastrados
+            </summary>
+            <returns>Uma lista de tipos de usuário</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoUsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna um tipo de usuário específico
+            </summary>
+            <param name="id">ID do tipo de usuário</param>
+            <returns>Objeto TipoUsuario que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoUsuarioRepository.Atualizar(System.Int32,gufi.webAPI.Domains.TipoUsuario)">
+            <summary>
+            Atualiza um tipo de usuário específico
+            </summary>
+            <param name="id">ID do tipo de usuário</param>
+            <param name="novoTipoUsuario">Objeto TipoUsuario com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.ITipoUsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um tipo de usuário específico
+            </summary>
+            <param name="id">ID do tipo de usuário a ser deletado</param>
+        </member>
         <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.Login(System.String,System.String)">
             <summary>
             Busca um usuário específico
@@ -11,6 +223,38 @@
             <param name="email">Email do usuário</param>
             <param name="senha">Senha do usuário</param>
             <returns>Objeto Usuario correspondente as credenciais informadas</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.Cadastrar(gufi.webAPI.Domains.Usuario)">
+            <summary>
+            Cadastra um novo usuário
+            </summary>
+            <param name="usuario">Objeto Usuario a ser cadastrado</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.ListarTodos">
+            <summary>
+            Lista todos os usuários cadastrados
+            </summary>
+            <returns>Uma lista de usuários</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.BuscarPorId(System.Int32)">
+            <summary>
+            Retorna um usuário específico
+            </summary>
+            <param name="id">ID do usuário</param>
+            <returns>Objeto Usuario que foi buscado</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.Atualizar(System.Int32,gufi.webAPI.Domains.Usuario)">
+            <summary>
+            Atualiza um usuário específico
+            </summary>
+            <param name="id">ID do usuário</param>
+            <param name="novoUsuario">Objeto Usuario com as novas informações</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.Deletar(System.Int32)">
+            <summary>
+            Deleta um usuário específico
+            </summary>
+            <param name="id">ID do usuário a ser deletado</param>
         </member>
     </members>
 </doc>

@@ -12,6 +12,30 @@ namespace gufi.webAPI.Repositories
     public class PresencaRepository : IPresencaRepository
     {
         GufiContext ctx = new GufiContext();
+
+        public void AprovarRecusar(int idPresenca, string status)
+        {
+            Presenca presencaBuscada = BuscarPorId(idPresenca);
+
+            switch (status)
+            {
+                case "1":
+                    presencaBuscada.IdSituacao = 1;
+                    break;
+                case "2":
+                    presencaBuscada.IdSituacao = 2;
+                    break;
+                case "3":
+                    presencaBuscada.IdSituacao = 3;
+                    break;
+                default:
+                    presencaBuscada.IdSituacao = presencaBuscada.IdSituacao;
+                    break;
+            }
+
+            ctx.Presencas.Update(presencaBuscada);
+            ctx.SaveChanges();
+        }
         public void Atualizar(int id, Presenca novaPresenca)
         {
             Presenca presencaBuscada = BuscarPorId(id);
@@ -42,11 +66,26 @@ namespace gufi.webAPI.Repositories
         {
             Presenca presencaBuscada = BuscarPorId(id);
 
-            if(presencaBuscada != null)
+            if (presencaBuscada != null)
             {
                 ctx.Presencas.Remove(presencaBuscada);
                 ctx.SaveChanges();
             }
+        }
+
+        public void Inscrever(Presenca inscricao)
+        {
+            ctx.Presencas.Add(inscricao);
+            ctx.SaveChanges();
+        }
+
+        public List<Presenca> ListarMinhas(int id)
+        {
+            return ctx.Presencas
+                .Include(x => x.IdUsuarioNavigation)
+                .Include("IdSituacaoNavigation")
+                .Include(y => y.IdEventoNavigation.IdTipoEventoNavigation)
+                .Where(x => x.IdUsuario == id).ToList();
         }
 
         public List<Presenca> ListarTodos()

@@ -39,5 +39,25 @@ namespace gufi.webAPI.Interfaces
         /// </summary>
         /// <param name="id">ID da presença a ser deletada</param>
         void Deletar(int id);
+
+        /// <summary>
+        /// Lista todas as presença de um usuário específico
+        /// </summary>
+        /// <param name="id">ID do usuário</param>
+        /// <returns>Uma lista de presenças</returns>
+        List<Presenca> ListarMinhas(int id);
+
+        /// <summary>
+        /// Altera o status de uma presença
+        /// </summary>
+        /// <param name="idPresenca">ID da presença que será alterada</param>
+        /// <param name="status">Novo status para a presença</param>
+        void AprovarRecusar(int idPresenca, string status);
+
+        /// <summary>
+        /// Inscreve um novo usuário
+        /// </summary>
+        /// <param name="inscricao">Objeto Presenca que estará inscrito</param>
+        void Inscrever(Presenca inscricao);
     }
 }
