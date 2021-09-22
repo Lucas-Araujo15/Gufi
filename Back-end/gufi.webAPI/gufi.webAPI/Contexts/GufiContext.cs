@@ -7,20 +7,19 @@ using gufi.webAPI.Domains;
 
 namespace gufi.webAPI.Contexts
 {
-    //Comando DATABASE First
-    //Scaffold-DbContext "Data Source=DESKTOP-30RGV41\SQLEXPRESS; initial catalog=inLockGames_manha; user Id=sa; pwd=senai@132;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context InLockContext
-    public partial class GufiContext : DbContext
+    public partial class GUFIContext : DbContext
     {
-        public GufiContext()
+        public GUFIContext()
         {
         }
 
-        public GufiContext(DbContextOptions<GufiContext> options)
+        public GUFIContext(DbContextOptions<GUFIContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Evento> Eventos { get; set; }
+        public virtual DbSet<ImagemPerfil> ImagemPerfils { get; set; }
         public virtual DbSet<Instituicao> Instituicaos { get; set; }
         public virtual DbSet<Presenca> Presencas { get; set; }
         public virtual DbSet<Situacao> Situacaos { get; set; }
@@ -32,8 +31,8 @@ namespace gufi.webAPI.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-//warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-SV3M4A7\\SQLEXPRESS; initial catalog=GUFI; user Id=sa; pwd=Senai@132;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=NOTE0113B2\\SQLEXPRESS; initial catalog=GUFI; user Id=sa; pwd=Senai@132");
             }
         }
 
@@ -44,7 +43,7 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<Evento>(entity =>
             {
                 entity.HasKey(e => e.IdEvento)
-                    .HasName("PK__evento__C8DC7BDA660B967B");
+                    .HasName("PK__evento__C8DC7BDA0F717BC6");
 
                 entity.ToTable("evento");
 
@@ -85,17 +84,59 @@ namespace gufi.webAPI.Contexts
                     .HasConstraintName("FK__evento__idTipoEv__45F365D3");
             });
 
+            modelBuilder.Entity<ImagemPerfil>(entity =>
+            {
+                entity.HasKey(e => e.IdImagemPerfil)
+                    .HasName("PK__ImagemPe__630232F665BC7154");
+
+                entity.ToTable("ImagemPerfil");
+
+                entity.HasIndex(e => e.IdUsuario, "UQ__ImagemPe__645723A70CDF1DEE")
+                    .IsUnique();
+
+                entity.Property(e => e.IdImagemPerfil).HasColumnName("idImagemPerfil");
+
+                entity.Property(e => e.Binario)
+                    .IsRequired()
+                    .HasColumnName("binario");
+
+                entity.Property(e => e.DataCriacao)
+                    .HasColumnType("datetime")
+                    .HasColumnName("dataCriacao")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.Property(e => e.MimeType)
+                    .IsRequired()
+                    .HasMaxLength(80)
+                    .IsUnicode(false)
+                    .HasColumnName("mimeType");
+
+                entity.Property(e => e.NomeArquivo)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("nomeArquivo");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithOne(p => p.ImagemPerfil)
+                    .HasForeignKey<ImagemPerfil>(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ImagemPer__idUsu__70DDC3D8");
+            });
+
             modelBuilder.Entity<Instituicao>(entity =>
             {
                 entity.HasKey(e => e.IdInstituicao)
-                    .HasName("PK__institui__8EA7AB00065DAFF4");
+                    .HasName("PK__institui__8EA7AB0098D35412");
 
                 entity.ToTable("instituicao");
 
-                entity.HasIndex(e => e.Cnpj, "UQ__institui__35BD3E48F06F3A87")
+                entity.HasIndex(e => e.Cnpj, "UQ__institui__35BD3E48C47A7087")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Endereco, "UQ__institui__9456D406B4C76073")
+                entity.HasIndex(e => e.Endereco, "UQ__institui__9456D40685078326")
                     .IsUnique();
 
                 entity.Property(e => e.IdInstituicao).HasColumnName("idInstituicao");
@@ -123,7 +164,7 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<Presenca>(entity =>
             {
                 entity.HasKey(e => e.IdPresenca)
-                    .HasName("PK__presenca__44CEA427E15DD29B");
+                    .HasName("PK__presenca__44CEA42789FEBEDA");
 
                 entity.ToTable("presenca");
 
@@ -156,7 +197,7 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<Situacao>(entity =>
             {
                 entity.HasKey(e => e.IdSituacao)
-                    .HasName("PK__situacao__12AFD197B753B449");
+                    .HasName("PK__situacao__12AFD1974975A76A");
 
                 entity.ToTable("situacao");
 
@@ -171,11 +212,11 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<TipoEvento>(entity =>
             {
                 entity.HasKey(e => e.IdTipoEvento)
-                    .HasName("PK__tipoEven__CDB3A3BED44A782B");
+                    .HasName("PK__tipoEven__CDB3A3BE3476C7B7");
 
                 entity.ToTable("tipoEvento");
 
-                entity.HasIndex(e => e.TituloTipoEvento, "UQ__tipoEven__D2A1CBBBC19AF037")
+                entity.HasIndex(e => e.TituloTipoEvento, "UQ__tipoEven__D2A1CBBB021E96D5")
                     .IsUnique();
 
                 entity.Property(e => e.TituloTipoEvento)
@@ -188,11 +229,11 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<TipoUsuario>(entity =>
             {
                 entity.HasKey(e => e.IdTipoUsuario)
-                    .HasName("PK__tipoUsua__03006BFF5AC07DC8");
+                    .HasName("PK__tipoUsua__03006BFF0705A6A7");
 
                 entity.ToTable("tipoUsuario");
 
-                entity.HasIndex(e => e.TituloTipoUsuario, "UQ__tipoUsua__C6B29FC36A5BE577")
+                entity.HasIndex(e => e.TituloTipoUsuario, "UQ__tipoUsua__C6B29FC3E40D5DF8")
                     .IsUnique();
 
                 entity.Property(e => e.IdTipoUsuario).HasColumnName("idTipoUsuario");
@@ -207,11 +248,11 @@ namespace gufi.webAPI.Contexts
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__usuario__645723A6CC8289C7");
+                    .HasName("PK__usuario__645723A6589AE157");
 
                 entity.ToTable("usuario");
 
-                entity.HasIndex(e => e.Email, "UQ__usuario__AB6E6164D10B4A8E")
+                entity.HasIndex(e => e.Email, "UQ__usuario__AB6E6164AD8245FB")
                     .IsUnique();
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");

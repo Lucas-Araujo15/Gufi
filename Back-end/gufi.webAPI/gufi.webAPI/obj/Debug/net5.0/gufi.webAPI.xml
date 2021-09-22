@@ -4,7 +4,7 @@
         <name>gufi.webAPI</name>
     </assembly>
     <members>
-        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.Cadastar(gufi.webAPI.Domains.Evento)">
+        <member name="M:gufi.webAPI.Interfaces.IEventoRepository.Cadastrar(gufi.webAPI.Domains.Evento)">
             <summary>
             Cadastra um novo evento
             </summary>
