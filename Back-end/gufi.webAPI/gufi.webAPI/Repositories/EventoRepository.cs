@@ -35,7 +35,7 @@ namespace gufi.webAPI.Repositories
             return ctx.Eventos.FirstOrDefault(e => e.IdEvento == id);
         }
 
-        public void Cadastar(Evento evento)
+        public void Cadastrar(Evento evento)
         {
             ctx.Eventos.Add(evento);
             ctx.SaveChanges();

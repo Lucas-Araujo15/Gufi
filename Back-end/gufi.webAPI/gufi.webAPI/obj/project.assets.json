@@ -7534,19 +7534,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lucas Araujo\\.nuget\\packages\\": {}
+    "C:\\Users\\fic\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lucas Araujo\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
+      "projectUniqueName": "C:\\Users\\fic\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
       "projectName": "gufi.webAPI",
-      "projectPath": "C:\\Users\\Lucas Araujo\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
-      "packagesPath": "C:\\Users\\Lucas Araujo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lucas Araujo\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\obj\\",
+      "projectPath": "C:\\Users\\fic\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
+      "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fic\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lucas Araujo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

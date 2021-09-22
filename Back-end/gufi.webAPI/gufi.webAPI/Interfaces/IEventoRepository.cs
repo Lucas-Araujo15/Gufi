@@ -12,7 +12,7 @@ namespace gufi.webAPI.Interfaces
         /// Cadastra um novo evento
         /// </summary>
         /// <param name="evento">Objeto Evento a ser cadastrado</param>
-        void Cadastar(Evento evento);
+        void Cadastrar(Evento evento);
 
         /// <summary>
         /// Lista todos os eventos cadastrados
