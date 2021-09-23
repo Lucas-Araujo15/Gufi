@@ -11,7 +11,7 @@ namespace gufi.webAPI.Repositories
 {
     public class SituacaoRepository : ISituacaoRepository
     {
-        GufiContext ctx = new GufiContext();
+        GUFIContext ctx = new GUFIContext();
         public void Atualizar(int id, Situacao novaSituacao)
         {
             Situacao situacaoBuscada = BuscarPorId(id);

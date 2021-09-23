@@ -11,7 +11,7 @@ namespace gufi.webAPI.Repositories
 {
     public class TipoEventoRepository : ITipoEventoRepository
     {
-        GufiContext ctx = new GufiContext();
+        GUFIContext ctx = new GUFIContext();
         public void Atualizar(int id, TipoEvento novoTipoEvento)
         {
             TipoEvento tipoEventoBuscado = BuscarPorId(id);

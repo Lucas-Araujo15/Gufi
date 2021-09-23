@@ -256,5 +256,33 @@
             </summary>
             <param name="id">ID do usuário a ser deletado</param>
         </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.SalvarPerfilBD(Microsoft.AspNetCore.Http.IFormFile,System.Int32)">
+            <summary>
+            Cadastra uma imagem no banco
+            </summary>
+            <param name="foto">Arquivo da imagem</param>
+            <param name="id">ID do usuário que postou a imagem</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.SalvarPerfilDir(Microsoft.AspNetCore.Http.IFormFile,System.Int32)">
+            <summary>
+            Cadastra uma imagem pelo diretório
+            </summary>
+            <param name="foto">Arquivo da imagem</param>
+            <param name="id">ID do usuário que postou a imagem</param>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.ConsultarPerfilBD(System.Int32)">
+            <summary>
+            Consulta uma imagem armazenada no banco de dados
+            </summary>
+            <param name="idUsuario">ID do usuário que postou a imagem</param>
+            <returns>Imagem buscada em base64</returns>
+        </member>
+        <member name="M:gufi.webAPI.Interfaces.IUsuarioRepository.ConsultarPerfilDir(System.Int32)">
+            <summary>
+            Consulta uma imagem armazenada no diretório
+            </summary>
+            <param name="idUsuario">ID do usuário que postou a imagem</param>
+            <returns>Imagem buscada em base64</returns>
+        </member>
     </members>
 </doc>

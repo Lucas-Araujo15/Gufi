@@ -11,7 +11,7 @@ namespace gufi.webAPI.Repositories
 {
     public class PresencaRepository : IPresencaRepository
     {
-        GufiContext ctx = new GufiContext();
+        GUFIContext ctx = new GUFIContext();
 
         public void AprovarRecusar(int idPresenca, string status)
         {

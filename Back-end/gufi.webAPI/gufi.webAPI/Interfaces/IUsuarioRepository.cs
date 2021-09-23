@@ -1,4 +1,5 @@
 ﻿using gufi.webAPI.Domains;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,5 +48,33 @@ namespace gufi.webAPI.Interfaces
         /// </summary>
         /// <param name="id">ID do usuário a ser deletado</param>
         void Deletar(int id);
+
+        /// <summary>
+        /// Cadastra uma imagem no banco
+        /// </summary>
+        /// <param name="foto">Arquivo da imagem</param>
+        /// <param name="id">ID do usuário que postou a imagem</param>
+        void SalvarPerfilBD(IFormFile foto, int id);
+
+        /// <summary>
+        /// Cadastra uma imagem pelo diretório
+        /// </summary>
+        /// <param name="foto">Arquivo da imagem</param>
+        /// <param name="id">ID do usuário que postou a imagem</param>
+        void SalvarPerfilDir(IFormFile foto, int id);
+
+        /// <summary>
+        /// Consulta uma imagem armazenada no banco de dados
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário que postou a imagem</param>
+        /// <returns>Imagem buscada em base64</returns>
+        string ConsultarPerfilBD(int idUsuario);
+
+        /// <summary>
+        /// Consulta uma imagem armazenada no diretório
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário que postou a imagem</param>
+        /// <returns>Imagem buscada em base64</returns>
+        string ConsultarPerfilDir(int idUsuario);
     }
 }

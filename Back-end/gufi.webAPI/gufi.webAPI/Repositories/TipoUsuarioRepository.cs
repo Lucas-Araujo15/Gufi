@@ -11,7 +11,7 @@ namespace gufi.webAPI.Repositories
 {
     public class TipoUsuarioRepository : ITipoUsuarioRepository
     {
-        GufiContext ctx = new GufiContext();
+        GUFIContext ctx = new GUFIContext();
         public void Atualizar(int id, TipoUsuario novoTipoUsuario)
         {
             TipoUsuario tipoUsuarioBuscado = BuscarPorId(id);
