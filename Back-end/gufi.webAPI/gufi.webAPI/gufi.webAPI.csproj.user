@@ -7,5 +7,6 @@
     <ActiveDebugProfile>gufi.webAPI</ActiveDebugProfile>
     <Controller_SelectedScaffolderID>ApiControllerEmptyScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/Api</Controller_SelectedScaffolderCategoryPath>
+    <NameOfLastUsedPublishProfile>C:\Users\Lucas Araujo\Desktop\Gufi\Back-end\gufi.webAPI\gufi.webAPI\Properties\PublishProfiles\gufi-webapi - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
