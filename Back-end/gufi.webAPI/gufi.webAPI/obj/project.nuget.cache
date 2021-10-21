@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rcA31pOzaB1F7wQZV+5ToGC8P+nc7EQ7kr30gBiwi7eqzNv3JzLaeRbDCROTdBvkZpH04XuXFX/tHmP9AR3WEA==",
+  "dgSpecHash": "klL3exbgqGPWp+jSRplepOu6QEApT9BY+70Ff5H9uEPj7SK904cxFZtu8GNtMRXTIlS2FAbbO4VvPxn+sGJB9A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas Araujo\\Desktop\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
+  "projectFilePath": "C:\\Users\\Lucas Araujo\\OneDrive\\Área de Trabalho\\Gufi\\Back-end\\gufi.webAPI\\gufi.webAPI\\gufi.webAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas Araujo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Lucas Araujo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.10\\microsoft.aspnetcore.authentication.jwtbearer.5.0.10.nupkg.sha512",

@@ -4,13 +4,56 @@ class TiposEventos extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaTiposEventos: [{ idTipoEvento: 1, titulo: "C#" }, { idTipoEvento: 2, titulo: "ReactJS" }, { idTipoEvento: 3, titulo: "SQL" }],
+            listaTiposEventos: [],
             titulo: ''
         }
     };
 
-    componentDidMount() {
+    buscarTipoEventos = () => {
+        console.log("Está funcionando!")
 
+        fetch('http://localhost:5000/api/tiposevento')
+
+            .then(resposta => resposta.json())
+
+            .then(dados => this.setState({ listaTiposEventos: dados }))
+
+            .catch(erro => console.log(erro))
+    }
+
+    atualizaEstadoTitulo = async (event) => {
+        console.log("acionou a função.")
+        await this.setState({
+            titulo: event.target.value
+        })
+
+        console.log(this.state.titulo)
+    }
+
+    cadastrarTipoEvento = (event) => {
+        event.preventDefault();
+
+        fetch('http://localhost:5000/api/tiposevento', {
+            method: 'POST',
+
+            body: JSON.stringify({tituloTipoEvento : this.state.titulo}),
+
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        .then(console.log("Cadastrando"))
+
+        .then(this.buscarTipoEventos)
+
+        .then(this.state.titulo = "")
+
+        .catch(erro => console.log(erro))
+    }
+
+    componentDidMount() {
+        this.buscarTipoEventos()
     }
 
     render() {
@@ -32,13 +75,25 @@ class TiposEventos extends Component {
                                         return (
                                             <tr key={tipoEvento.idTipoEvento}>
                                                 <td>{tipoEvento.idTipoEvento}</td>
-                                                <td>{tipoEvento.titulo}</td>
+                                                <td>{tipoEvento.tituloTipoEvento}</td>
                                             </tr>
                                         )
                                     })
                                 }
                             </tbody>
                         </table>
+                    </section>
+                    <section>
+                        <h2>Cadastro de tipo de evento</h2>
+                        <form onSubmit={this.cadastrarTipoEvento}>
+                            <div>
+                                <input type="text" value={this.state.titulo}
+                                    placeholder="Título do tipo de evento"
+                                    onChange={this.atualizaEstadoTitulo}
+                                />
+                                <button type="submit">Cadastrar</button>
+                            </div>
+                        </form>
                     </section>
                 </main>
             </div>
