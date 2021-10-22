@@ -5,7 +5,8 @@ class TiposEventos extends Component {
         super(props);
         this.state = {
             listaTiposEventos: [],
-            titulo: ''
+            titulo: '',
+            idTipoEventoAlterado: 0
         }
     };
 
@@ -33,27 +34,69 @@ class TiposEventos extends Component {
     cadastrarTipoEvento = (event) => {
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/tiposevento', {
-            method: 'POST',
+        if (this.state.idTipoEventoAlterado !== 0) {
+            fetch('http://localhost:5000/api/tiposevento/' + this.state.idTipoEventoAlterado, {
+                method: 'PUT',
+                body: JSON.stringify({ tituloTipoEvento: this.state.titulo }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
 
-            body: JSON.stringify({tituloTipoEvento : this.state.titulo}),
+                .then(resposta => {
+                    if (resposta.status === 204) {
+                        console.log('O tipo de evento ' + this.state.idTipoEventoAlterado + ' foi atualizado!',
+                            'Seu novo título agora é: ' + this.state.titulo)
+                    }
+                })
 
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+                .then(this.limparCampos)
 
-        .then(console.log("Cadastrando"))
+                .then(this.buscarTipoEventos)
+        }
+        else {
+            fetch('http://localhost:5000/api/tiposevento', {
+                method: 'POST',
 
-        .then(this.buscarTipoEventos)
+                body: JSON.stringify({ tituloTipoEvento: this.state.titulo }),
 
-        .then(this.state.titulo = "")
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
 
-        .catch(erro => console.log(erro))
+                .then(console.log("Cadastrando"))
+
+                .then(this.limparCampos)
+
+                .then(this.buscarTipoEventos)
+
+                .catch(erro => console.log(erro))
+        }
     }
 
     componentDidMount() {
         this.buscarTipoEventos()
+    }
+
+    buscarTipoEventoPorId = (tipoEvento) => {
+        this.setState({
+            idTipoEventoAlterado: tipoEvento.idTipoEvento,
+            titulo: tipoEvento.tituloTipoEvento
+        }, () => {
+            console.log(
+                'O tipo de evento ' + tipoEvento.idTipoEvento + ' foi selecionado, ',
+                'agora o valor do state idTipoEventoAlterado é: ' + this.state.idTipoEventoAlterado + ', ',
+                'E o título é ' + tipoEvento.tituloTipoEvento
+            )
+        })
+    }
+
+    limparCampos = () => {
+        this.setState({
+            titulo: "",
+            idTipoEventoAlterado: 0
+        })
     }
 
     render() {
@@ -76,6 +119,8 @@ class TiposEventos extends Component {
                                             <tr key={tipoEvento.idTipoEvento}>
                                                 <td>{tipoEvento.idTipoEvento}</td>
                                                 <td>{tipoEvento.tituloTipoEvento}</td>
+
+                                                <td><button onClick={() => this.buscarTipoEventoPorId(tipoEvento)}>Editar</button></td>
                                             </tr>
                                         )
                                     })
@@ -87,7 +132,8 @@ class TiposEventos extends Component {
                         <h2>Cadastro de tipo de evento</h2>
                         <form onSubmit={this.cadastrarTipoEvento}>
                             <div>
-                                <input type="text" value={this.state.titulo}
+                                <input type="text"
+                                    value={this.state.titulo}
                                     placeholder="Título do tipo de evento"
                                     onChange={this.atualizaEstadoTitulo}
                                 />
