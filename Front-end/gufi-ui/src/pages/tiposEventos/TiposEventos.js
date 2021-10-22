@@ -137,7 +137,28 @@ class TiposEventos extends Component {
                                     placeholder="Título do tipo de evento"
                                     onChange={this.atualizaEstadoTitulo}
                                 />
-                                <button type="submit">Cadastrar</button>
+
+                                {
+                                    <button type="submit" disabled={this.state.titulo === '' ? 'none' : ''}>
+                                        {this.state.idTipoEventoAlterado === 0 ? 'Cadastrar' : 'Atualizar'}
+                                    </button>
+                                }
+
+                                <button type="button" onClick={this.limparCampos} style={this.state.titulo === '' ? { display: 'none' } : { display: '' }}>
+                                    Cancelar
+                                </button>
+
+                                {
+                                    this.state.idTipoEventoAlterado !== 0 &&
+                                    <div>
+                                        <p>
+                                            O tipo de evento {this.state.idTipoEventoAlterado} está sendo editado.
+                                        </p>
+                                        <p>
+                                            Clique em cancelar caso queira interromper a operação!
+                                        </p>
+                                    </div>
+                                }
                             </div>
                         </form>
                     </section>
