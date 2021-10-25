@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import Home from './pages/home/App'
 import NotFound from './pages/notFound/NotFound'
-import TiposEventos from './pages/tiposEventos/TiposEventos'
+import TiposEventos from './pages/tiposEventos/TiposEventos.jsx'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 

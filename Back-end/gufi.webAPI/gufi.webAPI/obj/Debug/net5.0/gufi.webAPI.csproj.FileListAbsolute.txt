@@ -204,4 +204,3 @@ C:\Users\Lucas Araujo\OneDrive\Área de Trabalho\Gufi\Back-end\gufi.webAPI\gufi.
 C:\Users\Lucas Araujo\OneDrive\Área de Trabalho\Gufi\Back-end\gufi.webAPI\gufi.webAPI\obj\Debug\net5.0\gufi.webAPI.xml
 C:\Users\Lucas Araujo\OneDrive\Área de Trabalho\Gufi\Back-end\gufi.webAPI\gufi.webAPI\obj\Debug\net5.0\gufi.webAPI.pdb
 C:\Users\Lucas Araujo\OneDrive\Área de Trabalho\Gufi\Back-end\gufi.webAPI\gufi.webAPI\obj\Debug\net5.0\gufi.webAPI.genruntimeconfig.cache
-C:\Users\Lucas Araujo\OneDrive\Área de Trabalho\Gufi\Back-end\gufi.webAPI\gufi.webAPI\obj\Debug\net5.0\gufi.webAPI.csproj.CopyComplete

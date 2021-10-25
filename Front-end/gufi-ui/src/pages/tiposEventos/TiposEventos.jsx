@@ -92,6 +92,19 @@ class TiposEventos extends Component {
         })
     }
 
+    excluirTipoEvento = (tipoEvento) => {
+        fetch('http://localhost:5000/api/tiposevento/' + tipoEvento.idTipoEvento, {
+            method: 'DELETE'
+        })
+            .then(resposta => {
+                if (resposta.status === 204) {
+                    console.log('Tipo de evento ' + tipoEvento.idTipoEvento + ' foi excluído!')
+                }
+            })
+
+            .then(this.buscarTipoEventos)
+    }
+
     limparCampos = () => {
         this.setState({
             titulo: "",
@@ -119,8 +132,8 @@ class TiposEventos extends Component {
                                             <tr key={tipoEvento.idTipoEvento}>
                                                 <td>{tipoEvento.idTipoEvento}</td>
                                                 <td>{tipoEvento.tituloTipoEvento}</td>
-
                                                 <td><button onClick={() => this.buscarTipoEventoPorId(tipoEvento)}>Editar</button></td>
+                                                <td><button onClick={() => this.excluirTipoEvento(tipoEvento)}>Excluir</button></td>
                                             </tr>
                                         )
                                     })
