@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 import Home from './pages/home/App'
 import NotFound from './pages/notFound/NotFound'
 import TiposEventos from './pages/tiposEventos/TiposEventos.jsx'
+import Login from './pages/login/login.jsx'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -15,6 +16,7 @@ const routing = (
         <Route exact path="/" component={Home} /> {/* Home */}
         <Route path="/tiposEventos" component={TiposEventos} /> {/* TiposEventos */}
         <Route path="/notFound" component={NotFound} /> {/*NotFound*/}
+        <Route path="/login" component={Login} />
         <Redirect to="/notFound" /> {/*Redireciona para Not Found caso não encontre nenhuma rota*/}
       </Switch>
     </div>
