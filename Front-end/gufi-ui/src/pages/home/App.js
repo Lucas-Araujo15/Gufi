@@ -1,8 +1,8 @@
-import '../assets/css/login.css';
-import '../assets/css/style.css';
-import '../assets/css/reset.css';
-import '../assets/css/flexbox.css'
-import logo from '../assets/img/logo.png'
+import '../../assets/css/login.css';
+import '../../assets/css/style.css';
+import '../../assets/css/reset.css';
+import '../../assets/css/flexbox.css'
+import logo from '../../assets/img/logo.png'
 
 
 function App() {
