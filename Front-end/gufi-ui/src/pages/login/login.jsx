@@ -2,7 +2,7 @@ import { Component } from "react";
 import axios from 'axios'
 import '../../assets/css/login.css';
 import logo from '../../assets/img/logo.png'
-import { parseJwt } from "../../services/auth";
+import { parseJwt, usuarioAutenticado } from "../../services/auth";
 
 export default class Login extends Component {
     constructor(props) {
@@ -44,6 +44,7 @@ export default class Login extends Component {
 
                     if (parseJwt().role === '1') {
                         this.props.history.push('/tiposEventos')
+                        
                     } else {
                         this.props.history.push('/')
                     }

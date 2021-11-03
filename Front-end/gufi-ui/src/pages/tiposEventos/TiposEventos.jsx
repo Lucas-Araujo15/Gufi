@@ -21,7 +21,11 @@ export default class TiposEventos extends Component {
         //funcao nativa JS, ele é uma API com métodos.
 
         //dentro dos parenteses vamos informar qual é o end point.
-        fetch('http://localhost:5000/api/tiposevento')
+        fetch('http://localhost:5000/api/tiposevento', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
             //por padrao ele sempre inicia como GET.
 
             .then(resposta => resposta.json())
@@ -73,7 +77,8 @@ export default class TiposEventos extends Component {
 
                 // Define o cabeçalho da requisição
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
             })
 
@@ -108,7 +113,8 @@ export default class TiposEventos extends Component {
                 body: JSON.stringify({ tituloTipoEvento: this.state.titulo }), //lembrado que aqui e um obj js e nao json.
 
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
             })
                 //Exibe no console a msg "Tipo de evento cadastrado"
@@ -148,26 +154,30 @@ export default class TiposEventos extends Component {
         console.log('O Tipo de Evento ' + tipoEvento.idTipoEvento + ' foi selecionado!');
 
         fetch('http://localhost:5000/api/TiposEvento/' + tipoEvento.idTipoEvento,
-        {
-            method: 'DELETE'
-        })
+            {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
 
-        .then(resposta => {
-            if (resposta.status === 204) {
-                console.log('Tipo de Evento ' + tipoEvento.idTipoEvento + ' foi excluído!')
-            };
-        })
+            .then(resposta => {
+                if (resposta.status === 204) {
+                    console.log('Tipo de Evento ' + tipoEvento.idTipoEvento + ' foi excluído!')
+                };
+            })
 
-        //caso ocorra algum erro, mostra no console do navegador.
-        .catch(erro => console.log(erro))
+            //caso ocorra algum erro, mostra no console do navegador.
+            .catch(erro => console.log(erro))
 
-        .then(this.buscarTipoEventos);
+            .then(this.buscarTipoEventos);
     };
 
     limparCampos = () => {
         this.setState({
-            titulo : '',
-            idTipoEventoAlterado : 0
+            titulo: '',
+            idTipoEventoAlterado: 0
         })
         console.log('Os states foram resetados!')
     };
@@ -175,25 +185,25 @@ export default class TiposEventos extends Component {
     render() {
         return (
             <div>
-                  <header className="cabecalhoPrincipal">
+                <header className="cabecalhoPrincipal">
                     <div className="container">
-                    <img src={logo}
-                    alt="Logo da Gufi" />
+                        <img src={logo}
+                            alt="Logo da Gufi" />
 
-                    <nav className="cabecalhoPrincipal-nav">
-                        Administrador
-                    </nav>
+                        <nav className="cabecalhoPrincipal-nav">
+                            Administrador
+                        </nav>
                     </div>
                 </header>
                 <main className="conteudoPrincipal">
                     {/* Lista de Tipos de Eventos */}
                     <section className="conteudoPrincipal-cadastro">
-                        
+
                         <Titulo titulosecao={this.state.titulosecao} />
 
                         {/* <h2 class="conteudoPrincipal-cadastro-titulo">Lista de Tipos de Eventos</h2> */}
-                        
-                        <div class="container" id="conteudoPrincipal-lista">          
+
+                        <div class="container" id="conteudoPrincipal-lista">
                             <table id="tabela-lista">
                                 <thead>
                                     <tr>
@@ -212,7 +222,7 @@ export default class TiposEventos extends Component {
                                                     <td>{tipoEvento.tituloTipoEvento}</td>
 
                                                     <td><button onClick={() => this.buscarTipoEventoPorId(tipoEvento)} >Editar</button>
-                                                    <button onClick={() => this.excluirTipoEvento(tipoEvento)} >Excluir</button></td>
+                                                        <button onClick={() => this.excluirTipoEvento(tipoEvento)} >Excluir</button></td>
                                                 </tr>
                                             )
                                         })
@@ -224,7 +234,7 @@ export default class TiposEventos extends Component {
 
                     {/* Cadastro por tipo de evento */}
                     <section className="container" id="conteudoPrincipal-cadastro">
-                    <Titulo titulosecao="Cadastro de Tipo de Evento" />
+                        <Titulo titulosecao="Cadastro de Tipo de Evento" />
 
                         {/* <h2 className="conteudoPrincipal-cadastro-titulo">Cadastro de tipo de evento</h2> */}
                         <form onSubmit={this.manipularTipoEvento} >
@@ -255,14 +265,14 @@ export default class TiposEventos extends Component {
                                 {/* Uma outra forma, com IF Ternário e disabled ao mesmo tempo */}
 
                                 {
-                                    <button type="submit"  class="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro" disabled={ this.state.titulo === '' ? 'none' : '' }>
-                                        { this.state.idTipoEventoAlterado === 0 ? 'Cadastrar' : 'Atualizar' }
+                                    <button type="submit" class="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro" disabled={this.state.titulo === '' ? 'none' : ''}>
+                                        {this.state.idTipoEventoAlterado === 0 ? 'Cadastrar' : 'Atualizar'}
                                     </button>
                                 }
 
                                 {/* Faz a chamada da função limparCampos */}
 
-                                <button type="button"  class="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro" onClick={this.limparCampos} style={{ display : '' }}>
+                                <button type="button" class="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro" onClick={this.limparCampos} style={{ display: '' }}>
                                     Cancelar
                                 </button>
 
