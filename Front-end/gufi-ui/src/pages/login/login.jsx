@@ -1,5 +1,8 @@
 import { Component } from "react";
 import axios from 'axios'
+import '../../assets/css/login.css';
+import logo from '../../assets/img/logo.png'
+import { parseJwt } from "../../services/auth";
 
 export default class Login extends Component {
     constructor(props) {
@@ -32,6 +35,18 @@ export default class Login extends Component {
                     this.setState({
                         isLoading: false
                     })
+
+                    let base64 = localStorage.getItem('usuario-login').split('.')[1]
+                    console.log(base64)
+                    console.log(window.atob(base64))
+                    console.log(JSON.parse(window.atob(base64)))
+                    console.log(parseJwt().role)
+
+                    if (parseJwt().role === '1') {
+                        this.props.history.push('/tiposEventos')
+                    } else {
+                        this.props.history.push('/')
+                    }
                 }
             })
 
@@ -43,7 +58,7 @@ export default class Login extends Component {
                 })
             })
 
-            this.limparCampos()
+        this.limparCampos()
     }
 
     atualizaStateCampo = (campo) => {
@@ -65,35 +80,53 @@ export default class Login extends Component {
         return (
             <div>
                 <main>
-                    <section>
-                        <p>Bem vindo(a)! <br /> Faça login para acessar a sua conta.</p>
+                    <section className="container-login flex">
+                        <div className="img__login"><div className="img__overlay"></div></div>
 
-                        <form onSubmit={this.efetuarLogin}>
-                            <input
-                                type="text"
-                                name="email"
-                                value={this.state.email}
-                                onChange={this.atualizaStateCampo}
-                                placeholder="username"
-                            />
-                            <input
-                                type="password"
-                                name="senha"
-                                value={this.state.senha}
-                                onChange={this.atualizaStateCampo}
-                                placeholder="password"
-                            />
+                        <div className="item__login">
+                            <div className="row">
+                                <div className="item">
+                                    <img src={logo} className="icone__login" alt="logo da Gufi" />
+                                </div>
+                                <div className="item" id="item__title">
+                                    <p className="text__login" id="item__description">
+                                        Bem-vindo! Faça login para acessar sua conta.
+                                    </p>
+                                </div>
+                                <form onSubmit={this.efetuarLogin}>
+                                    <div className="item">
+                                        <input
+                                            className="input__login"
+                                            type="text"
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.atualizaStateCampo}
+                                            placeholder="username"
+                                        />
+                                    </div>
+                                    <div className="item">
+                                        <input
+                                            className="input__login"
+                                            type="password"
+                                            name="senha"
+                                            value={this.state.senha}
+                                            onChange={this.atualizaStateCampo}
+                                            placeholder="password"
+                                        />
+                                    </div>
+                                    <div className="item">
+                                        <p style={{ color: "red" }}>{this.state.erroMensagem}</p>
 
-                            <p style={{ color: "red" }}>{this.state.erroMensagem}</p>
-
-                            {
-                                this.state.isLoading === true ?
-                                    <button disabled type="submit">Loading</button>
-                                    :
-                                    <button disabled={this.state.email === '' || this.state.senha === '' ? 'none' : ''}  type="submit">Login</button>
-                            }
-
-                        </form>
+                                        {
+                                            this.state.isLoading === true ?
+                                                <button className="btn btn__login" id="btn__login" disabled type="submit">Loading</button>
+                                                :
+                                                <button className="btn btn__login" id="btn__login" disabled={this.state.email === '' || this.state.senha === '' ? 'none' : ''} type="submit">Login</button>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </section>
                 </main>
             </div>

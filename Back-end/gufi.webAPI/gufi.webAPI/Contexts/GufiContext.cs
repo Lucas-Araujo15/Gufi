@@ -33,7 +33,7 @@ namespace gufi.webAPI.Contexts
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 //optionsBuilder.UseSqlServer("Server=tcp:senai-gufi.database.windows.net,1433;Initial Catalog=GUFI;Persist Security Info=False;User ID=?;Password=?;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-SV3M4A7\\SQLEXPRESS; Initial Catalog=GUFI; user id=sa; pwd=Senai@132;");
+                optionsBuilder.UseSqlServer("Data Source=NOTE0111B1\\SQLEXPRESS; Initial Catalog=GUFI; user id=sa; pwd=Senai@132;");
             }
         }
 
