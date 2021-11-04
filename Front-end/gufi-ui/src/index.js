@@ -24,12 +24,25 @@ const PermissaoAdm = ({ component: Component }) => (
   />
 );
 
+const PermissaoComum = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() && parseJwt().role === '2' ? (
+        // operador spread
+        <Component {...props} />
+      ) : (
+        <Redirect to="login" />
+      )
+    }
+  />
+);
+
 const routing = (
   <Router>
     <div>
       <Switch>
         <Route exact path="/" component={Home} /> {/* Home */}
-        <Route path="/eventos" component={Eventos}/>
+        <PermissaoComum path="/eventos" component={Eventos}/>
         <PermissaoAdm path="/tiposEventos" component={TiposEventos} /> {/* TiposEventos */}
         <Route path="/notFound" component={NotFound} /> {/*NotFound*/}
         <Route path="/login" component={Login} />
