@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../../assets/css/login.css';
 import logo from '../../assets/img/logo.png'
 import { parseJwt, usuarioAutenticado } from "../../services/auth";
+import { Link } from "react-router-dom";
 
 export default class Login extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class Login extends Component {
 
                     if (parseJwt().role === '1') {
                         this.props.history.push('/tiposEventos')
-                        
+
                     } else {
                         this.props.history.push('/')
                     }
@@ -87,7 +88,9 @@ export default class Login extends Component {
                         <div className="item__login">
                             <div className="row">
                                 <div className="item">
-                                    <img src={logo} className="icone__login" alt="logo da Gufi" />
+                                    <Link to="/">
+                                        <img src={logo} className="icone__login" alt="logo da Gufi" />
+                                    </Link>
                                 </div>
                                 <div className="item" id="item__title">
                                     <p className="text__login" id="item__description">
